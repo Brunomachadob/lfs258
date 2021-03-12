@@ -24,12 +24,12 @@ resource "google_compute_instance_template" "lfclass_template" {
   }
 }
 
-//resource "google_compute_instance_from_template" "lfclass_master" {
-//  name                     = "lfclass-master"
-//  source_instance_template = "${google_compute_instance_template.lfclass_template.id}"
-//}
-//
-//resource "google_compute_instance_from_template" "lfclass_worker1" {
-//  name                     = "lfclass-worker-1"
-//  source_instance_template = "${google_compute_instance_template.lfclass_template.id}"
-//}
+resource "google_compute_instance_from_template" "lfclass_master" {
+  name                     = "lfclass-master"
+  source_instance_template = "${google_compute_instance_template.lfclass_template.id}"
+}
+
+resource "google_compute_instance_from_template" "lfclass_worker1" {
+  name                     = "lfclass-worker-1"
+  source_instance_template = "${google_compute_instance_template.lfclass_template.id}"
+}
