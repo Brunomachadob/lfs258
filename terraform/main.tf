@@ -12,6 +12,11 @@ resource "google_compute_instance_template" "lfclass_template" {
   machine_type         = "n1-standard-2"
   can_ip_forward       = false
 
+  scheduling {
+    preemptible       = true
+    automatic_restart = false
+  }
+
   disk {
     source_image = "ubuntu-1804-lts"
     auto_delete  = true
@@ -20,7 +25,8 @@ resource "google_compute_instance_template" "lfclass_template" {
   }
 
   network_interface {
-    network = "${google_compute_network.vpc_network.name}"
+    network    = "${google_compute_network.vpc_network.name}"
+    subnetwork = "${google_compute_subnetwork.vpc_network_subnetwork.name}"
   }
 }
 
